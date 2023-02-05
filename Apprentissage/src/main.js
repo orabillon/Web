@@ -1,4 +1,3 @@
-let interval;
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
@@ -14,7 +13,7 @@ function showFPS(){
 
 function run(time){
     requestAnimationFrame(run);
-   // let maintenant = Date.now();
+
     let dt = (time - dernierUpdate) / 1000;
 
     if ( dt < (1 / 71) - 0.001){
@@ -33,7 +32,7 @@ function run(time){
 function init(){
     console.log("init");
     load();
-   // interval = setInterval(run, 1000 / 60);
+
     requestAnimationFrame(run);
 }
 

@@ -1,7 +1,6 @@
 class Sprite{
-    constructor(pSrc, pX =0, pY=0){
-        this.img = new Image();
-        this.img.src = pSrc;
+    constructor(pImage, pX =0, pY=0){
+        this.img = pImage;
         this.x = pX;
         this.y = pY;
     }
