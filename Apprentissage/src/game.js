@@ -18,10 +18,17 @@ function startGame()
 {
     console.log("startGame")
 
-    for( let img of Object.values(imageLoader.getLstImage())){
-        let monSprite = new Sprite(img, rnd(0,1280), rnd(0,720));
-        lstSprite.push(monSprite);
-    }
+    lstSprite = [];
+
+    /*for( let img of Object.values(imageLoader.getLstImage())){
+        let spriteEnemy = new Sprite(img, rnd(0,1280), rnd(0,720));
+        lstSprite.push(spriteEnemy);
+    }*/
+
+    let spriteEnemy = new Sprite(imageLoader.getImage("../images/enemyred.png"), 50, 50);
+    spriteEnemy.setTileSheet(24,24);
+    lstSprite.push(spriteEnemy);
+
 
     bGameStart = true;
 }

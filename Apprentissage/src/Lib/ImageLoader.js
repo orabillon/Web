@@ -27,6 +27,10 @@ class ImageLoader{
         return this.getTotalImagesLoaded() / this.getTotalImages();
     }
 
+    getImage(pPath){
+        return this.lstImages[pPath];
+    }
+
     imageLoaded(e){
         this.imageLoadedCount++;
         console.log(" Image chargéé :  " + e.target.currentSrc);
