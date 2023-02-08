@@ -6,7 +6,7 @@ class Sprite{
         this.scaleX = 1;
         this.scaleY = 1;
 
-        this.currentFrame = 0;
+        this.currentFrame = 12;
         this.tileSize = {
             x: 0,
             y: 0
@@ -18,6 +18,11 @@ class Sprite{
         this.tileSize.x = pSizeX;
         this.tileSize.y = pSizeY;
         this.bTilesheet = true;
+    }
+
+    setScale(pScaleX, pScaleY){
+        this.scaleX = pScaleX;
+        this.scaleY = pScaleY;
     }
 
     draw(pCtx){

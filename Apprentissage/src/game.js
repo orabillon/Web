@@ -25,9 +25,19 @@ function startGame()
         lstSprite.push(spriteEnemy);
     }*/
 
-    let spriteEnemy = new Sprite(imageLoader.getImage("../images/enemyred.png"), 50, 50);
+    let imgEnemy = imageLoader.getImage("../images/enemyred.png");
+    let spriteEnemy = new Sprite(imgEnemy, 50, 50);
     spriteEnemy.setTileSheet(24,24);
+    spriteEnemy.setScale(4,4),
+    spriteEnemy.currentFrame = 3;
     lstSprite.push(spriteEnemy);
+
+    let imgPlayer = imageLoader.getImage("../images/player.png");
+    let spritePlayer = new Sprite(imgPlayer, 250, 50);
+    spritePlayer.setTileSheet(30,16);
+    spritePlayer.setScale(4,4);
+    spritePlayer.currentFrame = 12;
+    lstSprite.push(spritePlayer);
 
 
     bGameStart = true;
