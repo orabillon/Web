@@ -31,6 +31,11 @@ function run(time){
 
 function init(){
     console.log("init");
+
+    ctx.imageSmoothingEnabled = false;
+    ctx.msImageSmoothingEnabled = false;
+    ctx.webkitImageSmoothingEnabled = false;
+    ctx.mozImageSmoothingEnabled = false;
     load();
 
     requestAnimationFrame(run);
