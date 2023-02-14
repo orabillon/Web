@@ -6,12 +6,45 @@ class Sprite{
         this.scaleX = 1;
         this.scaleY = 1;
 
-        this.currentFrame = 12;
+        this.currentFrame = 0;
         this.tileSize = {
             x: 0,
             y: 0
         };
         this.bTilesheet = false;
+
+        // animation
+        this.animations = [];
+        this.currentFrameInAnimation = 0;
+        this.currentAnimation = null;
+        this.frameTimer = 0;
+    }
+
+    addAnimation(pName, pFrames, pSpeed, pLoop = true) {
+        let animation = {
+            name: pName,
+            frames: pFrames,    // Exemple : [10,11,12,13]
+            speed: pSpeed,
+            loop: pLoop,
+            end: false
+        }
+        this.animations.push(animation);
+    }
+
+    startAnimation(pName) {
+        if (this.currentAnimation != null) {
+            if (this.currentAnimation.name == pName) {
+                return;
+            }
+        }
+        this.animations.forEach(animation => {
+            if (animation.name == pName) {
+                this.currentAnimation = animation;
+                this.currentFrameInAnimation = 0;
+                this.currentFrame = this.currentAnimation.frames[this.currentFrameInAnimation];
+                this.currentAnimation.end = false;
+            }
+        });
     }
 
     setTileSheet(pSizeX, pSizeY){
@@ -23,6 +56,26 @@ class Sprite{
     setScale(pScaleX, pScaleY){
         this.scaleX = pScaleX;
         this.scaleY = pScaleY;
+    }
+
+    update(dt) {
+        if (this.currentAnimation != null) {
+            this.frameTimer += dt;
+            if (this.frameTimer >= this.currentAnimation.speed) {
+                this.frameTimer = 0;
+                this.currentFrameInAnimation++;
+                if (this.currentFrameInAnimation > this.currentAnimation.frames.length - 1) {
+                    if (this.currentAnimation.loop) {
+                        this.currentFrameInAnimation = 0;
+                    }
+                    else {
+                        this.currentFrameInAnimation = this.currentAnimation.frames.length - 1;
+                        this.currentAnimation.end = true;
+                    }
+                }
+                this.currentFrame = this.currentAnimation.frames[this.currentFrameInAnimation];
+            }
+        }
     }
 
     draw(pCtx){

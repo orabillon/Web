@@ -20,23 +20,21 @@ function startGame()
 
     lstSprite = [];
 
-    /*for( let img of Object.values(imageLoader.getLstImage())){
-        let spriteEnemy = new Sprite(img, rnd(0,1280), rnd(0,720));
-        lstSprite.push(spriteEnemy);
-    }*/
-
     let imgEnemy = imageLoader.getImage("../images/enemyred.png");
     let spriteEnemy = new Sprite(imgEnemy, 50, 50);
     spriteEnemy.setTileSheet(24,24);
-    spriteEnemy.setScale(4,4),
-    spriteEnemy.currentFrame = 3;
+    spriteEnemy.setScale(4,4);
+    spriteEnemy.addAnimation("TURN", [0, 1, 2, 3, 4, 5], 0.1);
+    spriteEnemy.startAnimation("TURN");
     lstSprite.push(spriteEnemy);
 
     let imgPlayer = imageLoader.getImage("../images/player.png");
     let spritePlayer = new Sprite(imgPlayer, 250, 50);
     spritePlayer.setTileSheet(30,16);
     spritePlayer.setScale(4,4);
-    spritePlayer.currentFrame = 12;
+    spritePlayer.addAnimation("TURNRIGHT", [0, 1, 2, 3, 4, 5, 6, 7, 8], 0.1, false);
+    spritePlayer.addAnimation("TURNUP", [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 0.1, true);
+    spritePlayer.startAnimation("TURNRIGHT");
     lstSprite.push(spritePlayer);
 
 
@@ -47,6 +45,9 @@ function update(dt){
     if (!bGameStart){
         return;
     }
+    lstSprite.forEach(sprite => {
+        sprite.update(dt);
+    });
 }
 
 function draw(pCtx){
